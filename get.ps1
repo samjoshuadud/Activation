@@ -13,7 +13,8 @@ $FilePath = if ($isAdmin) { "$env:SystemRoot\Temp\MAS_$rand.cmd" } else { "$env:
 try {
     $response = Invoke-WebRequest -Uri $DownloadURL3 -UseBasicParsing
 }
-
+catch { 'Permission First'
+}
 
 $ScriptArgs = "$args "
 $prefix = "@REM $rand `r`n"
