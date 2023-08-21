@@ -10,11 +10,8 @@ $rand = Get-Random -Maximum 1000
 $isAdmin = [bool]([Security.Principal.WindowsIdentity]::GetCurrent().Groups -match 'S-1-5-32-544')
 $FilePath = if ($isAdmin) { "$env:SystemRoot\Temp\MAS_$rand.cmd" } else { "$env:TEMP\MAS_$rand.cmd" }
 
-try {
-    $response = Invoke-WebRequest -Uri $DownloadURL3 -UseBasicParsing
-}
-catch { 'Permission First'
-}
+try { $response = Invoke-WebRequest -Uri $DownloadURL3 -UseBasicParsing }
+catch {"Permission First"}
 
 $ScriptArgs = "$args "
 $prefix = "@REM $rand `r`n"
